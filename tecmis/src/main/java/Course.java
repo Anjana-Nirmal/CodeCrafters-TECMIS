@@ -10,6 +10,7 @@ public class Course {
     private JButton deleteCourseButton;
     private JButton searchCourseButton;
     private JButton refreshButton;
+    private JButton backButton; // ✅ new back button
     private JTable table1;
 
     public Course() {
@@ -55,7 +56,7 @@ public class Course {
             }
         });
 
-        // ✏️ Edit Course
+        // ✏ Edit Course
         editCourseButton.addActionListener(e -> {
             int row = table1.getSelectedRow();
             if (row == -1) {
@@ -145,6 +146,12 @@ public class Course {
 
         // 🔄 Refresh Table
         refreshButton.addActionListener(e -> loadCourses());
+
+        // 🔙 Back Button
+        backButton.addActionListener(e -> {
+            new Admin_Dash().setVisible(true); // Open Admin Dashboard
+            SwingUtilities.getWindowAncestor(Main).dispose(); // Close this window
+        });
     }
 
     // 🔁 Load all courses
@@ -233,7 +240,7 @@ public class Course {
         }
     }
 
-    // ✏️ Update course
+    // ✏ Update course
     private boolean updateCourse(String code, String type, String name, int credit, String lecturerId) {
         String query = "UPDATE Course_Unit SET name=?, credit=?, c_lecturer_id=? WHERE course_code=? AND type=?";
 

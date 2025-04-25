@@ -11,6 +11,7 @@ public class UserProfile {
     private JButton deleteButton;
     private JButton searchButton;
     private JButton refreshButton;
+    private JButton backButton; // ✅ Back button
     private JTable userTable;
 
     public UserProfile() {
@@ -54,7 +55,7 @@ public class UserProfile {
             }
         });
 
-        // ✏️ Edit User
+        // ✏ Edit User
         editButton.addActionListener(e -> {
             int selectedRow = userTable.getSelectedRow();
             if (selectedRow == -1) {
@@ -66,7 +67,7 @@ public class UserProfile {
             String userId = model.getValueAt(selectedRow, 0).toString();
 
             JTextField userIdField = new JTextField(userId);
-            userIdField.setEnabled(false); // Not editable
+            userIdField.setEnabled(false);
 
             JTextField nameField = new JTextField(model.getValueAt(selectedRow, 1).toString());
             JTextField emailField = new JTextField(model.getValueAt(selectedRow, 2).toString());
@@ -138,11 +139,17 @@ public class UserProfile {
         // 🔄 Refresh Button
         refreshButton.addActionListener(e -> loadUsersToTable());
 
-        // 🖱️ Double-click to edit user
+        // 🔙 Back Button
+        backButton.addActionListener(e -> {
+            new Admin_Dash().setVisible(true);
+            SwingUtilities.getWindowAncestor(Main).dispose();
+        });
+
+        // 🖱 Double-click to edit user
         userTable.addMouseListener(new MouseAdapter() {
             public void mouseClicked(MouseEvent evt) {
                 if (evt.getClickCount() == 2) {
-                    editButton.doClick(); // simulate Edit button click
+                    editButton.doClick();
                 }
             }
         });
@@ -233,7 +240,7 @@ public class UserProfile {
     }
 
     private boolean addUser(String userId, String name, String email, String username, String contact, String role) {
-        String defaultPassword = "default123"; // You can update logic to generate random passwords if you want
+        String defaultPassword = "default123";
 
         String query = "INSERT INTO User (user_id, name, email, username, contact, password, role) VALUES (?, ?, ?, ?, ?, ?, ?)";
 
