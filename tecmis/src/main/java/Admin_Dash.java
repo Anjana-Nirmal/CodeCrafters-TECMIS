@@ -4,80 +4,90 @@ import java.awt.event.ActionListener;
 
 public class Admin_Dash extends JFrame {
     private JPanel Main;
-    private JButton btnuserprofiles; // Opens User Profiles Management GUI
-    private JButton btncourses;      // Opens Courses Management GUI
-    private JButton btnnotices;      // Opens Notices Management GUI
-    private JButton btntimetables;   // Opens Time Tables Management GUI
-    private JButton btnback;         // Goes back or logs out
-    private JButton btnexit;         // Exits application
+    private JButton btnuserprofiles;
+    private JButton btncourses;
+    private JButton btnnotices;
+    private JButton btntimetables;
+    private JButton btnback;
+    private JButton btnexit;
 
     public Admin_Dash() {
         setTitle("Admin Dashboard");
         setContentPane(Main);
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         setSize(500, 400);
-        setLocationRelativeTo(null); // Center on screen
+        setLocationRelativeTo(null);
         setVisible(true);
 
-        // 🚀 When this is clicked, open the User Profiles GUI
+        // 🚀 Open User Profiles
         btnuserprofiles.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                // Replace this with:
-                // new UserProfilesGUI().setVisible(true);
-                JOptionPane.showMessageDialog(null, "User Profiles Clicked");
+                JFrame frame = new JFrame("User Profiles");
+                frame.setContentPane(new UserProfile().Main);
+                frame.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
+                frame.setSize(900, 600);
+                frame.setLocationRelativeTo(null);
+                frame.setVisible(true);
             }
         });
 
-        // 🚀 When this is clicked, open the Courses Management GUI
+        // 🚀 Open Courses Management
         btncourses.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                // Replace this with:
-                // new CoursesGUI().setVisible(true);
-                JOptionPane.showMessageDialog(null, "Courses Clicked");
+                JFrame frame = new JFrame("Courses Management");
+                frame.setContentPane(new Course().Main);
+                frame.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
+                frame.setSize(850, 450);
+                frame.setLocationRelativeTo(null);
+                frame.setVisible(true);
             }
         });
 
-        // 🚀 When this is clicked, open the Notices Management GUI
+        // 🚀 Open Notices Management
         btnnotices.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                // Replace this with:
-                // new NoticesGUI().setVisible(true);
-                JOptionPane.showMessageDialog(null, "Notices Clicked");
+                JFrame frame = new JFrame("Notices Management");
+                frame.setContentPane(new Notices().Main);
+                frame.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
+                frame.setSize(800, 400);
+                frame.setLocationRelativeTo(null);
+                frame.setVisible(true);
             }
         });
 
-        // 🚀 When this is clicked, open the Time Tables GUI
+        // 🚀 Open Time Tables Management
         btntimetables.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                // Replace this with:
-                // new TimeTablesGUI().setVisible(true);
-                JOptionPane.showMessageDialog(null, "Time Tables Clicked");
+                JFrame frame = new JFrame("Time Tables Management");
+                frame.setContentPane(new Time_tables().Main);
+                frame.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
+                frame.setSize(800, 400);
+                frame.setLocationRelativeTo(null);
+                frame.setVisible(true);
             }
         });
 
-        // 🔙 This can log out the user or go back to a previous screen
+        // 🔙 Back Button
         btnback.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                // You could go back to login screen:
-                // new LoginScreen().setVisible(true);
-                // dispose(); // to close this window
-                JOptionPane.showMessageDialog(null, "Back Clicked");
+                JOptionPane.showMessageDialog(Main, "Back button clicked. You can add logout logic here.");
+                // Example: new LoginScreen().setVisible(true);
+                // dispose(); // Close this window
             }
         });
 
-        // ❌ Exit confirmation dialog
+        // ❌ Exit Button
         btnexit.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                int confirm = JOptionPane.showConfirmDialog(null,
+                int confirm = JOptionPane.showConfirmDialog(Main,
                         "Are you sure you want to exit?", "Exit Confirmation",
                         JOptionPane.YES_NO_OPTION);
-
                 if (confirm == JOptionPane.YES_OPTION) {
                     System.exit(0);
                 }

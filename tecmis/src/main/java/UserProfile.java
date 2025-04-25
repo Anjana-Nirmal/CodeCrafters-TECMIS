@@ -1,7 +1,6 @@
 import javax.swing.*;
 import javax.swing.table.DefaultTableModel;
-import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
+import java.awt.event.*;
 import java.sql.*;
 import java.util.ArrayList;
 
@@ -11,13 +10,15 @@ public class UserProfile {
     private JButton editButton;
     private JButton deleteButton;
     private JButton searchButton;
+    private JButton refreshButton;
     private JTable userTable;
 
     public UserProfile() {
         loadUsersToTable();
 
-        // Add User
+        // ➕ Add User
         addUserButton.addActionListener(e -> {
+            JTextField userIdField = new JTextField();
             JTextField nameField = new JTextField();
             JTextField emailField = new JTextField();
             JTextField usernameField = new JTextField();
@@ -25,6 +26,7 @@ public class UserProfile {
             JTextField roleField = new JTextField();
 
             Object[] fields = {
+                    "User ID:", userIdField,
                     "Name:", nameField,
                     "Email:", emailField,
                     "Username:", usernameField,
@@ -35,6 +37,7 @@ public class UserProfile {
             int result = JOptionPane.showConfirmDialog(null, fields, "Add User", JOptionPane.OK_CANCEL_OPTION);
             if (result == JOptionPane.OK_OPTION) {
                 boolean success = addUser(
+                        userIdField.getText(),
                         nameField.getText(),
                         emailField.getText(),
                         usernameField.getText(),
@@ -51,7 +54,7 @@ public class UserProfile {
             }
         });
 
-        // Edit User
+        // ✏️ Edit User
         editButton.addActionListener(e -> {
             int selectedRow = userTable.getSelectedRow();
             if (selectedRow == -1) {
@@ -62,6 +65,9 @@ public class UserProfile {
             DefaultTableModel model = (DefaultTableModel) userTable.getModel();
             String userId = model.getValueAt(selectedRow, 0).toString();
 
+            JTextField userIdField = new JTextField(userId);
+            userIdField.setEnabled(false); // Not editable
+
             JTextField nameField = new JTextField(model.getValueAt(selectedRow, 1).toString());
             JTextField emailField = new JTextField(model.getValueAt(selectedRow, 2).toString());
             JTextField usernameField = new JTextField(model.getValueAt(selectedRow, 3).toString());
@@ -69,6 +75,7 @@ public class UserProfile {
             JTextField roleField = new JTextField(model.getValueAt(selectedRow, 5).toString());
 
             Object[] fields = {
+                    "User ID (not editable):", userIdField,
                     "Name:", nameField,
                     "Email:", emailField,
                     "Username:", usernameField,
@@ -96,7 +103,7 @@ public class UserProfile {
             }
         });
 
-        // Delete User
+        // ❌ Delete User
         deleteButton.addActionListener(e -> {
             int selectedRow = userTable.getSelectedRow();
             if (selectedRow == -1) {
@@ -120,11 +127,23 @@ public class UserProfile {
             }
         });
 
-        // ✅ Search User
+        // 🔎 Search User
         searchButton.addActionListener(e -> {
-            String keyword = JOptionPane.showInputDialog(Main, "Enter name, username, email, or role to search:");
+            String keyword = JOptionPane.showInputDialog(Main, "Enter user ID, name, username, email, or role to search:");
             if (keyword != null && !keyword.trim().isEmpty()) {
                 searchUsers(keyword.trim());
+            }
+        });
+
+        // 🔄 Refresh Button
+        refreshButton.addActionListener(e -> loadUsersToTable());
+
+        // 🖱️ Double-click to edit user
+        userTable.addMouseListener(new MouseAdapter() {
+            public void mouseClicked(MouseEvent evt) {
+                if (evt.getClickCount() == 2) {
+                    editButton.doClick(); // simulate Edit button click
+                }
             }
         });
     }
@@ -148,10 +167,9 @@ public class UserProfile {
         ArrayList<Object[]> users = new ArrayList<>();
         String query = "SELECT user_id, name, email, username, contact, role, CURRENT_TIMESTAMP AS date_created FROM User";
 
-        try (
-                Connection conn = Connector.getConnection();
-                Statement stmt = conn.createStatement();
-                ResultSet rs = stmt.executeQuery(query)) {
+        try (Connection conn = Connector.getConnection();
+             Statement stmt = conn.createStatement();
+             ResultSet rs = stmt.executeQuery(query)) {
 
             while (rs.next()) {
                 Object[] row = {
@@ -174,9 +192,8 @@ public class UserProfile {
     }
 
     private void searchUsers(String keyword) {
-        ArrayList<Object[]> users = new ArrayList<>();
         String query = "SELECT user_id, name, email, username, contact, role, CURRENT_TIMESTAMP AS date_created " +
-                "FROM User WHERE name LIKE ? OR email LIKE ? OR username LIKE ? OR role LIKE ?";
+                "FROM User WHERE user_id LIKE ? OR name LIKE ? OR email LIKE ? OR username LIKE ? OR role LIKE ?";
 
         try (Connection conn = Connector.getConnection();
              PreparedStatement ps = conn.prepareStatement(query)) {
@@ -186,6 +203,7 @@ public class UserProfile {
             ps.setString(2, like);
             ps.setString(3, like);
             ps.setString(4, like);
+            ps.setString(5, like);
 
             ResultSet rs = ps.executeQuery();
 
@@ -214,9 +232,8 @@ public class UserProfile {
         }
     }
 
-    private boolean addUser(String name, String email, String username, String contact, String role) {
-        String userId = "U" + System.currentTimeMillis();
-        String defaultPassword = "default123";
+    private boolean addUser(String userId, String name, String email, String username, String contact, String role) {
+        String defaultPassword = "default123"; // You can update logic to generate random passwords if you want
 
         String query = "INSERT INTO User (user_id, name, email, username, contact, password, role) VALUES (?, ?, ?, ?, ?, ?, ?)";
 
@@ -231,44 +248,11 @@ public class UserProfile {
             ps.setString(6, defaultPassword);
             ps.setString(7, role);
 
-            int result = ps.executeUpdate();
-
-            if (result > 0) {
-                PreparedStatement roleStmt = null;
-
-                switch (role.toLowerCase()) {
-                    case "undergraduate":
-                        roleStmt = conn.prepareStatement("INSERT INTO Undergraduate (undergraduate_id, department) VALUES (?, ?)");
-                        roleStmt.setString(1, userId);
-                        roleStmt.setString(2, "Unknown");
-                        break;
-                    case "lecturer":
-                        roleStmt = conn.prepareStatement("INSERT INTO Lecturer (lecturer_id, department) VALUES (?, ?)");
-                        roleStmt.setString(1, userId);
-                        roleStmt.setString(2, "Unknown");
-                        break;
-                    case "admin":
-                        roleStmt = conn.prepareStatement("INSERT INTO Admin (admin_id) VALUES (?)");
-                        roleStmt.setString(1, userId);
-                        break;
-                    case "technicalofficer":
-                        roleStmt = conn.prepareStatement("INSERT INTO Technical_officer (to_id) VALUES (?)");
-                        roleStmt.setString(1, userId);
-                        break;
-                }
-
-                if (roleStmt != null) {
-                    roleStmt.executeUpdate();
-                    roleStmt.close();
-                }
-
-                return true;
-            }
+            return ps.executeUpdate() > 0;
 
         } catch (SQLException e) {
             e.printStackTrace();
         }
-
         return false;
     }
 
@@ -290,7 +274,6 @@ public class UserProfile {
         } catch (SQLException e) {
             e.printStackTrace();
         }
-
         return false;
     }
 
@@ -306,7 +289,6 @@ public class UserProfile {
         } catch (SQLException e) {
             e.printStackTrace();
         }
-
         return false;
     }
 
@@ -314,7 +296,7 @@ public class UserProfile {
         JFrame frame = new JFrame("User Profile Management");
         frame.setContentPane(new UserProfile().Main);
         frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-        frame.setSize(900, 500);
+        frame.setSize(900, 600);
         frame.setLocationRelativeTo(null);
         frame.setVisible(true);
     }

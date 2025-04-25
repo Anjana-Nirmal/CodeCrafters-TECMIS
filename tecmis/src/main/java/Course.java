@@ -1,6 +1,6 @@
 import javax.swing.*;
 import javax.swing.table.DefaultTableModel;
-import java.awt.event.ActionEvent;
+import java.awt.event.*;
 import java.sql.*;
 
 public class Course {
@@ -9,12 +9,13 @@ public class Course {
     private JButton editCourseButton;
     private JButton deleteCourseButton;
     private JButton searchCourseButton;
+    private JButton refreshButton;
     private JTable table1;
 
     public Course() {
         loadCourses();
 
-        // Add Course
+        // ➕ Add Course
         addCourseButton.addActionListener(e -> {
             JTextField codeField = new JTextField();
             JTextField nameField = new JTextField();
@@ -54,7 +55,7 @@ public class Course {
             }
         });
 
-        // Edit Course
+        // ✏️ Edit Course
         editCourseButton.addActionListener(e -> {
             int row = table1.getSelectedRow();
             if (row == -1) {
@@ -64,13 +65,24 @@ public class Course {
 
             DefaultTableModel model = (DefaultTableModel) table1.getModel();
             String courseCode = model.getValueAt(row, 0).toString();
+            String courseName = model.getValueAt(row, 1).toString();
             String type = model.getValueAt(row, 2).toString();
+            String credits = model.getValueAt(row, 3).toString();
+            String lecturerId = model.getValueAt(row, 4).toString();
 
-            JTextField nameField = new JTextField(model.getValueAt(row, 1).toString());
-            JTextField creditField = new JTextField(model.getValueAt(row, 3).toString());
-            JTextField lecturerIdField = new JTextField(model.getValueAt(row, 4).toString());
+            JTextField codeField = new JTextField(courseCode);
+            codeField.setEnabled(false);
+
+            JTextField typeField = new JTextField(type);
+            typeField.setEnabled(false);
+
+            JTextField nameField = new JTextField(courseName);
+            JTextField creditField = new JTextField(credits);
+            JTextField lecturerIdField = new JTextField(lecturerId);
 
             Object[] fields = {
+                    "Course Code (not editable):", codeField,
+                    "Type (not editable):", typeField,
                     "Course Name:", nameField,
                     "Credits:", creditField,
                     "Lecturer ID:", lecturerIdField
@@ -100,7 +112,7 @@ public class Course {
             }
         });
 
-        // Delete Course
+        // ❌ Delete Course
         deleteCourseButton.addActionListener(e -> {
             int row = table1.getSelectedRow();
             if (row == -1) {
@@ -123,16 +135,19 @@ public class Course {
             }
         });
 
-        // Search Course
+        // 🔎 Search Course
         searchCourseButton.addActionListener(e -> {
-            String keyword = JOptionPane.showInputDialog(Main, "Enter course code, name or type to search:");
+            String keyword = JOptionPane.showInputDialog(Main, "Enter course code, name, or type to search:");
             if (keyword != null && !keyword.trim().isEmpty()) {
                 searchCourses(keyword.trim());
             }
         });
+
+        // 🔄 Refresh Table
+        refreshButton.addActionListener(e -> loadCourses());
     }
 
-    // Load all courses
+    // 🔁 Load all courses
     private void loadCourses() {
         DefaultTableModel model = new DefaultTableModel();
         model.setColumnIdentifiers(new Object[]{"Course Code", "Course Name", "Type", "Credits", "Lecturer ID"});
@@ -161,7 +176,7 @@ public class Course {
         table1.setModel(model);
     }
 
-    // Search for courses
+    // 🔍 Search courses
     private void searchCourses(String keyword) {
         DefaultTableModel model = new DefaultTableModel();
         model.setColumnIdentifiers(new Object[]{"Course Code", "Course Name", "Type", "Credits", "Lecturer ID"});
@@ -196,7 +211,7 @@ public class Course {
         }
     }
 
-    // Add new course
+    // ➕ Add new course
     private boolean addCourse(String code, String name, String type, int credit, String lecturerId) {
         String query = "INSERT INTO Course_Unit (course_code, name, type, credit, c_lecturer_id) VALUES (?, ?, ?, ?, ?)";
 
@@ -218,7 +233,7 @@ public class Course {
         }
     }
 
-    // Update course
+    // ✏️ Update course
     private boolean updateCourse(String code, String type, String name, int credit, String lecturerId) {
         String query = "UPDATE Course_Unit SET name=?, credit=?, c_lecturer_id=? WHERE course_code=? AND type=?";
 
@@ -240,7 +255,7 @@ public class Course {
         }
     }
 
-    // Delete course
+    // ❌ Delete course
     private boolean deleteCourse(String code, String type) {
         String query = "DELETE FROM Course_Unit WHERE course_code=? AND type=?";
 
@@ -262,7 +277,7 @@ public class Course {
         JFrame frame = new JFrame("Course Management");
         frame.setContentPane(new Course().Main);
         frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-        frame.setSize(850, 400);
+        frame.setSize(850, 450);
         frame.setLocationRelativeTo(null);
         frame.setVisible(true);
     }
