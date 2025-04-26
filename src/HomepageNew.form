@@ -1,0 +1,213 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<form xmlns="http://www.intellij.com/uidesigner/form/" version="1" bind-to-class="HomepageNew">
+  <grid id="27dc6" binding="main" layout-manager="GridLayoutManager" row-count="1" column-count="2" same-size-horizontally="false" same-size-vertically="false" hgap="-1" vgap="-1">
+    <margin top="0" left="0" bottom="0" right="0"/>
+    <constraints>
+      <xy x="20" y="20" width="850" height="400"/>
+    </constraints>
+    <properties/>
+    <border type="none"/>
+    <children>
+      <grid id="4364d" binding="main2" layout-manager="GridLayoutManager" row-count="2" column-count="1" same-size-horizontally="false" same-size-vertically="false" hgap="-1" vgap="-1">
+        <margin top="0" left="0" bottom="0" right="0"/>
+        <constraints>
+          <grid row="0" column="0" row-span="1" col-span="1" vsize-policy="3" hsize-policy="3" anchor="0" fill="3" indent="0" use-parent-layout="false"/>
+        </constraints>
+        <properties>
+          <background color="-8157038"/>
+        </properties>
+        <border type="none"/>
+        <children>
+          <component id="cded" class="javax.swing.JLabel">
+            <constraints>
+              <grid row="0" column="0" row-span="1" col-span="1" vsize-policy="0" hsize-policy="0" anchor="2" fill="0" indent="0" use-parent-layout="false"/>
+            </constraints>
+            <properties>
+              <font name="Century Schoolbook" size="22" style="1"/>
+              <text value="Welcome To Lecturer"/>
+            </properties>
+          </component>
+          <component id="4f9cb" class="javax.swing.JLabel">
+            <constraints>
+              <grid row="1" column="0" row-span="1" col-span="1" vsize-policy="0" hsize-policy="0" anchor="1" fill="0" indent="0" use-parent-layout="false"/>
+            </constraints>
+            <properties>
+              <font name="Century Schoolbook" size="22" style="1"/>
+              <text value="Home Page"/>
+            </properties>
+          </component>
+        </children>
+      </grid>
+      <grid id="cd4fb" binding="main3" layout-manager="GridLayoutManager" row-count="4" column-count="4" same-size-horizontally="false" same-size-vertically="false" hgap="-1" vgap="-1">
+        <margin top="0" left="0" bottom="0" right="0"/>
+        <constraints>
+          <grid row="0" column="1" row-span="1" col-span="1" vsize-policy="3" hsize-policy="3" anchor="0" fill="3" indent="0" use-parent-layout="false"/>
+        </constraints>
+        <properties/>
+        <border type="none"/>
+        <children>
+          <component id="ef9ca" class="javax.swing.JLabel" binding="profile">
+            <constraints>
+              <grid row="0" column="0" row-span="1" col-span="1" vsize-policy="0" hsize-policy="0" anchor="0" fill="0" indent="0" use-parent-layout="false"/>
+            </constraints>
+            <properties>
+              <icon value="resume.png"/>
+              <text value=""/>
+            </properties>
+          </component>
+          <component id="61546" class="javax.swing.JButton" binding="profileButton" default-binding="true">
+            <constraints>
+              <grid row="1" column="0" row-span="1" col-span="1" vsize-policy="0" hsize-policy="3" anchor="0" fill="1" indent="0" use-parent-layout="false"/>
+            </constraints>
+            <properties>
+              <background color="-15234836"/>
+              <font name="Arial Black" size="12" style="2"/>
+              <foreground color="-1"/>
+              <text value="Profile"/>
+            </properties>
+          </component>
+          <component id="6ae1f" class="javax.swing.JLabel" binding="course">
+            <constraints>
+              <grid row="0" column="1" row-span="1" col-span="1" vsize-policy="0" hsize-policy="0" anchor="0" fill="0" indent="0" use-parent-layout="false"/>
+            </constraints>
+            <properties>
+              <icon value="execution.png"/>
+              <text value=""/>
+            </properties>
+          </component>
+          <component id="600eb" class="javax.swing.JButton" binding="manageCourseButton" default-binding="true">
+            <constraints>
+              <grid row="1" column="1" row-span="1" col-span="1" vsize-policy="0" hsize-policy="3" anchor="0" fill="1" indent="0" use-parent-layout="false"/>
+            </constraints>
+            <properties>
+              <background color="-15234836"/>
+              <font name="Arial Black" size="12" style="2"/>
+              <foreground color="-1"/>
+              <text value="Manage Course"/>
+            </properties>
+          </component>
+          <component id="499ae" class="javax.swing.JButton" binding="uploadMarksButton" default-binding="true">
+            <constraints>
+              <grid row="1" column="2" row-span="1" col-span="1" vsize-policy="0" hsize-policy="3" anchor="0" fill="1" indent="0" use-parent-layout="false"/>
+            </constraints>
+            <properties>
+              <background color="-15234836"/>
+              <font name="Arial Black" size="12" style="2"/>
+              <foreground color="-1"/>
+              <text value="Upload Marks"/>
+            </properties>
+          </component>
+          <component id="c1691" class="javax.swing.JLabel" binding="uploadMarks">
+            <constraints>
+              <grid row="0" column="2" row-span="1" col-span="1" vsize-policy="0" hsize-policy="0" anchor="0" fill="0" indent="0" use-parent-layout="false"/>
+            </constraints>
+            <properties>
+              <icon value="online-education.png"/>
+              <text value=""/>
+            </properties>
+          </component>
+          <component id="235b5" class="javax.swing.JLabel" binding="Eligibility">
+            <constraints>
+              <grid row="0" column="3" row-span="1" col-span="1" vsize-policy="0" hsize-policy="0" anchor="0" fill="0" indent="0" use-parent-layout="false"/>
+            </constraints>
+            <properties>
+              <icon value="candidate.png"/>
+              <text value=""/>
+            </properties>
+          </component>
+          <component id="d8aa3" class="javax.swing.JButton" binding="checkEligibilityButton" default-binding="true">
+            <constraints>
+              <grid row="1" column="3" row-span="1" col-span="1" vsize-policy="0" hsize-policy="3" anchor="0" fill="1" indent="0" use-parent-layout="false"/>
+            </constraints>
+            <properties>
+              <background color="-15234836"/>
+              <font name="Arial Black" size="12" style="2"/>
+              <foreground color="-1"/>
+              <text value="Check Eligibility"/>
+            </properties>
+          </component>
+          <component id="9537e" class="javax.swing.JLabel" binding="studentsDetails">
+            <constraints>
+              <grid row="2" column="0" row-span="1" col-span="1" vsize-policy="0" hsize-policy="0" anchor="0" fill="0" indent="0" use-parent-layout="false"/>
+            </constraints>
+            <properties>
+              <icon value="personal-information.png"/>
+              <text value=""/>
+            </properties>
+          </component>
+          <component id="c7f8a" class="javax.swing.JLabel" binding="attendance">
+            <constraints>
+              <grid row="2" column="1" row-span="1" col-span="1" vsize-policy="0" hsize-policy="0" anchor="0" fill="0" indent="0" use-parent-layout="false"/>
+            </constraints>
+            <properties>
+              <icon value="attendance.png"/>
+              <text value=""/>
+            </properties>
+          </component>
+          <component id="e6326" class="javax.swing.JLabel" binding="notice">
+            <constraints>
+              <grid row="2" column="2" row-span="1" col-span="1" vsize-policy="0" hsize-policy="0" anchor="0" fill="0" indent="0" use-parent-layout="false"/>
+            </constraints>
+            <properties>
+              <icon value="notice.png"/>
+              <text value=""/>
+            </properties>
+          </component>
+          <component id="9b21f" class="javax.swing.JLabel" binding="grade">
+            <constraints>
+              <grid row="2" column="3" row-span="1" col-span="1" vsize-policy="0" hsize-policy="0" anchor="0" fill="0" indent="0" use-parent-layout="false"/>
+            </constraints>
+            <properties>
+              <icon value="academic.png"/>
+              <text value=""/>
+            </properties>
+          </component>
+          <component id="c38ef" class="javax.swing.JButton" binding="studentDetailsButton" default-binding="true">
+            <constraints>
+              <grid row="3" column="0" row-span="1" col-span="1" vsize-policy="0" hsize-policy="3" anchor="0" fill="1" indent="0" use-parent-layout="false"/>
+            </constraints>
+            <properties>
+              <background color="-15234836"/>
+              <font name="Arial Black" size="12" style="2"/>
+              <foreground color="-1"/>
+              <text value="Student Details"/>
+            </properties>
+          </component>
+          <component id="2c8f5" class="javax.swing.JButton" binding="viewAttandaceButton" default-binding="true">
+            <constraints>
+              <grid row="3" column="1" row-span="1" col-span="1" vsize-policy="0" hsize-policy="3" anchor="0" fill="1" indent="0" use-parent-layout="false"/>
+            </constraints>
+            <properties>
+              <background color="-15234836"/>
+              <font name="Arial Black" size="12" style="2"/>
+              <foreground color="-1"/>
+              <text value="View Attandace"/>
+            </properties>
+          </component>
+          <component id="4dc18" class="javax.swing.JButton" binding="viewNoticeButton" default-binding="true">
+            <constraints>
+              <grid row="3" column="2" row-span="1" col-span="1" vsize-policy="0" hsize-policy="3" anchor="0" fill="1" indent="0" use-parent-layout="false"/>
+            </constraints>
+            <properties>
+              <background color="-15234836"/>
+              <font name="Arial Black" size="12" style="2"/>
+              <foreground color="-1"/>
+              <text value="View Notice"/>
+            </properties>
+          </component>
+          <component id="9c942" class="javax.swing.JButton" binding="grade_GPAButton" default-binding="true">
+            <constraints>
+              <grid row="3" column="3" row-span="1" col-span="1" vsize-policy="0" hsize-policy="3" anchor="0" fill="1" indent="0" use-parent-layout="false"/>
+            </constraints>
+            <properties>
+              <background color="-15234836"/>
+              <font name="Arial Black" size="12" style="2"/>
+              <foreground color="-1"/>
+              <text value="Grade_GPA"/>
+            </properties>
+          </component>
+        </children>
+      </grid>
+    </children>
+  </grid>
+</form>
