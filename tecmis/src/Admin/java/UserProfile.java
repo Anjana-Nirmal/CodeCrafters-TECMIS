@@ -11,13 +11,12 @@ public class UserProfile {
     private JButton deleteButton;
     private JButton searchButton;
     private JButton refreshButton;
-    private JButton backButton; // ✅ Back button
+    private JButton backButton;
     private JTable userTable;
 
     public UserProfile() {
         loadUsersToTable();
 
-        // ➕ Add User
         addUserButton.addActionListener(e -> {
             JTextField userIdField = new JTextField();
             JTextField nameField = new JTextField();
@@ -55,7 +54,6 @@ public class UserProfile {
             }
         });
 
-        // ✏ Edit User
         editButton.addActionListener(e -> {
             int selectedRow = userTable.getSelectedRow();
             if (selectedRow == -1) {
@@ -104,7 +102,6 @@ public class UserProfile {
             }
         });
 
-        // ❌ Delete User
         deleteButton.addActionListener(e -> {
             int selectedRow = userTable.getSelectedRow();
             if (selectedRow == -1) {
@@ -128,7 +125,6 @@ public class UserProfile {
             }
         });
 
-        // 🔎 Search User
         searchButton.addActionListener(e -> {
             String keyword = JOptionPane.showInputDialog(Main, "Enter user ID, name, username, email, or role to search:");
             if (keyword != null && !keyword.trim().isEmpty()) {
@@ -136,16 +132,13 @@ public class UserProfile {
             }
         });
 
-        // 🔄 Refresh Button
         refreshButton.addActionListener(e -> loadUsersToTable());
 
-        // 🔙 Back Button
         backButton.addActionListener(e -> {
             new Admin_Dash().setVisible(true);
             SwingUtilities.getWindowAncestor(Main).dispose();
         });
 
-        // 🖱 Double-click to edit user
         userTable.addMouseListener(new MouseAdapter() {
             public void mouseClicked(MouseEvent evt) {
                 if (evt.getClickCount() == 2) {

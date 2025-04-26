@@ -9,7 +9,7 @@ public class Connector {
 
     static {
         try {
-            Class.forName("com.mysql.cj.jdbc.Driver"); // MySQL 8.x
+            Class.forName("com.mysql.cj.jdbc.Driver");
         } catch (ClassNotFoundException e) {
             e.printStackTrace();
         }

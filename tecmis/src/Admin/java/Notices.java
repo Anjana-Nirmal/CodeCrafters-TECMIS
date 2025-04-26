@@ -11,13 +11,12 @@ public class Notices {
     private JButton deleteNoticeButton;
     private JButton searchNoticeButton;
     private JButton refreshButton;
-    private JButton backButton; // ✅ Back button
+    private JButton backButton;
     private JTable table1;
 
     public Notices() {
-        loadNotices(); // 🔥 Load notices immediately when app starts
+        loadNotices();
 
-        // ➕ Add Notice
         addNoticeButton.addActionListener(e -> {
             try {
                 String idStr = JOptionPane.showInputDialog("Enter Notice ID:");
@@ -51,7 +50,6 @@ public class Notices {
             }
         });
 
-        // ✏ Edit Notice
         editNoticeButton.addActionListener(e -> {
             try {
                 String idStr = JOptionPane.showInputDialog("Enter Notice ID to Edit:");
@@ -88,7 +86,6 @@ public class Notices {
             }
         });
 
-        // ❌ Delete Notice
         deleteNoticeButton.addActionListener(e -> {
             try {
                 String idStr = JOptionPane.showInputDialog("Enter Notice ID to Delete:");
@@ -120,7 +117,6 @@ public class Notices {
             }
         });
 
-        // 🔎 Search Notice
         searchNoticeButton.addActionListener(e -> {
             try {
                 String keyword = JOptionPane.showInputDialog("Enter keyword to search (title or content):");
@@ -139,7 +135,7 @@ public class Notices {
                 ResultSet rs = ps.executeQuery();
 
                 DefaultTableModel model = (DefaultTableModel) table1.getModel();
-                model.setRowCount(0); // ✅ Clear previous search results
+                model.setRowCount(0);
 
                 while (rs.next()) {
                     int id = rs.getInt("notice_id");
@@ -158,24 +154,21 @@ public class Notices {
             }
         });
 
-        // 🔄 Refresh Notices
         refreshButton.addActionListener(e -> loadNotices());
 
-        // 🔙 Back Button
         backButton.addActionListener(e -> {
             new Admin_Dash().setVisible(true);
             SwingUtilities.getWindowAncestor(Main).dispose();
         });
     }
 
-    // 🔥 Load all Notices
     private void loadNotices() {
         try {
             Connection conn = Connector.getConnection();
             Statement stmt = conn.createStatement();
             ResultSet rs = stmt.executeQuery("SELECT notice_id, title, content FROM notice");
 
-            DefaultTableModel model = new DefaultTableModel(new String[]{"Notice ID", "Title", "Content"}, 0); // ✅ Create new model fresh
+            DefaultTableModel model = new DefaultTableModel(new String[]{"Notice ID", "Title", "Content"}, 0);
 
             while (rs.next()) {
                 int id = rs.getInt("notice_id");
@@ -184,7 +177,7 @@ public class Notices {
                 model.addRow(new Object[]{id, title, content});
             }
 
-            table1.setModel(model); // 🔥 Set the model after filling it
+            table1.setModel(model);
 
             rs.close();
             stmt.close();

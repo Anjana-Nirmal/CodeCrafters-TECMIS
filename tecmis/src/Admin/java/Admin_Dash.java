@@ -8,8 +8,7 @@ public class Admin_Dash extends JFrame {
     private JButton btncourses;
     private JButton btnnotices;
     private JButton btntimetables;
-    private JButton btnback;
-    private JButton btnexit;
+    private JButton btnlogout;
 
     public Admin_Dash() {
         setTitle("Admin Dashboard");
@@ -19,7 +18,6 @@ public class Admin_Dash extends JFrame {
         setLocationRelativeTo(null);
         setVisible(true);
 
-        // 🚀 Open User Profiles
         btnuserprofiles.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
@@ -32,7 +30,6 @@ public class Admin_Dash extends JFrame {
             }
         });
 
-        // 🚀 Open Courses Management
         btncourses.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
@@ -45,7 +42,6 @@ public class Admin_Dash extends JFrame {
             }
         });
 
-        // 🚀 Open Notices Management
         btnnotices.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
@@ -58,7 +54,6 @@ public class Admin_Dash extends JFrame {
             }
         });
 
-        // 🚀 Open Time Tables Management
         btntimetables.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
@@ -71,25 +66,24 @@ public class Admin_Dash extends JFrame {
             }
         });
 
-        // 🔙 Back Button
-        btnback.addActionListener(new ActionListener() {
+        btnlogout.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                JOptionPane.showMessageDialog(Main, "Back button clicked. You can add logout logic here.");
-                // Example: new LoginScreen().setVisible(true);
-                // dispose(); // Close this window
-            }
-        });
+                int confirm = JOptionPane.showConfirmDialog(
+                        Main,
+                        "Are you sure you want to logout?",
+                        "Logout Confirmation",
+                        JOptionPane.YES_NO_OPTION
+                );
 
-        // ❌ Exit Button
-        btnexit.addActionListener(new ActionListener() {
-            @Override
-            public void actionPerformed(ActionEvent e) {
-                int confirm = JOptionPane.showConfirmDialog(Main,
-                        "Are you sure you want to exit?", "Exit Confirmation",
-                        JOptionPane.YES_NO_OPTION);
                 if (confirm == JOptionPane.YES_OPTION) {
-                    System.exit(0);
+                    JFrame frame = new JFrame("Login");
+                    frame.setContentPane(new Login().getMainPanel());
+                    frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+                    frame.pack();
+                    frame.setLocationRelativeTo(null);
+                    frame.setVisible(true);
+                    dispose();
                 }
             }
         });

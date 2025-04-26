@@ -9,13 +9,12 @@ public class Time_tables {
     private JButton addButton;
     private JButton editButton;
     private JButton deleteButton;
-    private JButton backButton; // ✅ Back button
+    private JButton backButton;
     private JTable table1;
 
     public Time_tables() {
-        loadTimetable(); // 🔥 Load timetable immediately
+        loadTimetable();
 
-        // ➕ Add Button
         addButton.addActionListener(e -> {
             try {
                 String id = JOptionPane.showInputDialog("Enter Timetable ID:");
@@ -58,7 +57,6 @@ public class Time_tables {
             }
         });
 
-        // ✏ Edit Button
         editButton.addActionListener(e -> {
             try {
                 String id = JOptionPane.showInputDialog("Enter Timetable ID to Edit:");
@@ -99,7 +97,6 @@ public class Time_tables {
             }
         });
 
-        // ❌ Delete Button
         deleteButton.addActionListener(e -> {
             try {
                 String id = JOptionPane.showInputDialog("Enter Timetable ID to Delete:");
@@ -127,14 +124,12 @@ public class Time_tables {
             }
         });
 
-        // 🔙 Back Button
         backButton.addActionListener(e -> {
             new Admin_Dash().setVisible(true);
             SwingUtilities.getWindowAncestor(Main).dispose();
         });
     }
 
-    // 🔥 Load all timetable entries into table
     private void loadTimetable() {
         try {
             Connection conn = Connector.getConnection();

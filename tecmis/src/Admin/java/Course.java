@@ -10,13 +10,12 @@ public class Course {
     private JButton deleteCourseButton;
     private JButton searchCourseButton;
     private JButton refreshButton;
-    private JButton backButton; // ✅ new back button
+    private JButton backButton;
     private JTable table1;
 
     public Course() {
         loadCourses();
 
-        // ➕ Add Course
         addCourseButton.addActionListener(e -> {
             JTextField codeField = new JTextField();
             JTextField nameField = new JTextField();
@@ -56,7 +55,6 @@ public class Course {
             }
         });
 
-        // ✏ Edit Course
         editCourseButton.addActionListener(e -> {
             int row = table1.getSelectedRow();
             if (row == -1) {
@@ -113,7 +111,6 @@ public class Course {
             }
         });
 
-        // ❌ Delete Course
         deleteCourseButton.addActionListener(e -> {
             int row = table1.getSelectedRow();
             if (row == -1) {
@@ -136,7 +133,6 @@ public class Course {
             }
         });
 
-        // 🔎 Search Course
         searchCourseButton.addActionListener(e -> {
             String keyword = JOptionPane.showInputDialog(Main, "Enter course code, name, or type to search:");
             if (keyword != null && !keyword.trim().isEmpty()) {
@@ -144,17 +140,14 @@ public class Course {
             }
         });
 
-        // 🔄 Refresh Table
         refreshButton.addActionListener(e -> loadCourses());
 
-        // 🔙 Back Button
         backButton.addActionListener(e -> {
-            new Admin_Dash().setVisible(true); // Open Admin Dashboard
-            SwingUtilities.getWindowAncestor(Main).dispose(); // Close this window
+            new Admin_Dash();
+            SwingUtilities.getWindowAncestor(Main).dispose();
         });
     }
 
-    // 🔁 Load all courses
     private void loadCourses() {
         DefaultTableModel model = new DefaultTableModel();
         model.setColumnIdentifiers(new Object[]{"Course Code", "Course Name", "Type", "Credits", "Lecturer ID"});
@@ -183,7 +176,6 @@ public class Course {
         table1.setModel(model);
     }
 
-    // 🔍 Search courses
     private void searchCourses(String keyword) {
         DefaultTableModel model = new DefaultTableModel();
         model.setColumnIdentifiers(new Object[]{"Course Code", "Course Name", "Type", "Credits", "Lecturer ID"});
@@ -218,7 +210,6 @@ public class Course {
         }
     }
 
-    // ➕ Add new course
     private boolean addCourse(String code, String name, String type, int credit, String lecturerId) {
         String query = "INSERT INTO Course_Unit (course_code, name, type, credit, c_lecturer_id) VALUES (?, ?, ?, ?, ?)";
 
@@ -240,7 +231,6 @@ public class Course {
         }
     }
 
-    // ✏ Update course
     private boolean updateCourse(String code, String type, String name, int credit, String lecturerId) {
         String query = "UPDATE Course_Unit SET name=?, credit=?, c_lecturer_id=? WHERE course_code=? AND type=?";
 
@@ -262,7 +252,6 @@ public class Course {
         }
     }
 
-    // ❌ Delete course
     private boolean deleteCourse(String code, String type) {
         String query = "DELETE FROM Course_Unit WHERE course_code=? AND type=?";
 
