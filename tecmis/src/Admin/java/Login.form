@@ -6,6 +6,7 @@
       <xy x="20" y="20" width="500" height="400"/>
     </constraints>
     <properties>
+      <foreground color="-8473365"/>
       <preferredSize width="600" height="400"/>
     </properties>
     <border type="none"/>
@@ -15,7 +16,9 @@
         <constraints>
           <grid row="1" column="0" row-span="1" col-span="1" vsize-policy="3" hsize-policy="3" anchor="0" fill="3" indent="0" use-parent-layout="false"/>
         </constraints>
-        <properties/>
+        <properties>
+          <foreground color="-1"/>
+        </properties>
         <border type="none"/>
         <children>
           <component id="1570" class="javax.swing.JLabel">
@@ -40,7 +43,7 @@
         </children>
       </grid>
       <grid id="967b4" layout-manager="GridLayoutManager" row-count="3" column-count="2" same-size-horizontally="false" same-size-vertically="false" hgap="-1" vgap="-1">
-        <margin top="0" left="45" bottom="0" right="95"/>
+        <margin top="0" left="70" bottom="0" right="145"/>
         <constraints>
           <grid row="2" column="0" row-span="1" col-span="1" vsize-policy="3" hsize-policy="3" anchor="0" fill="3" indent="0" use-parent-layout="false"/>
         </constraints>
@@ -60,6 +63,7 @@
                   <grid row="0" column="0" row-span="1" col-span="1" vsize-policy="0" hsize-policy="0" anchor="8" fill="0" indent="0" use-parent-layout="false"/>
                 </constraints>
                 <properties>
+                  <font name="Verdana" size="12" style="1"/>
                   <text value="Username:"/>
                 </properties>
               </component>
@@ -78,6 +82,7 @@
                   <grid row="0" column="0" row-span="1" col-span="1" vsize-policy="0" hsize-policy="0" anchor="8" fill="0" indent="0" use-parent-layout="false"/>
                 </constraints>
                 <properties>
+                  <font name="Verdana" size="12" style="1"/>
                   <text value="Passsword:"/>
                 </properties>
               </component>
@@ -96,7 +101,9 @@
             <constraints>
               <grid row="2" column="0" row-span="1" col-span="1" vsize-policy="3" hsize-policy="3" anchor="0" fill="3" indent="0" use-parent-layout="false"/>
             </constraints>
-            <properties/>
+            <properties>
+              <font name="Verdana" size="12" style="1"/>
+            </properties>
             <border type="none"/>
             <children>
               <component id="46ca1" class="javax.swing.JLabel">
@@ -104,6 +111,7 @@
                   <grid row="0" column="0" row-span="1" col-span="1" vsize-policy="0" hsize-policy="0" anchor="8" fill="0" indent="0" use-parent-layout="false"/>
                 </constraints>
                 <properties>
+                  <font name="Verdana" size="12" style="1"/>
                   <text value="Role:"/>
                 </properties>
               </component>
@@ -155,15 +163,15 @@
               <grid row="0" column="1" row-span="1" col-span="1" vsize-policy="0" hsize-policy="3" anchor="0" fill="1" indent="0" use-parent-layout="false"/>
             </constraints>
             <properties>
-              <background color="-15045963"/>
+              <background color="-12156236"/>
               <font name="Verdana" size="12" style="1"/>
-              <foreground color="-2627366"/>
+              <foreground color="-1"/>
               <margin top="5" left="15" bottom="5" right="15"/>
               <text value="Login"/>
             </properties>
           </component>
           <grid id="ccfd4" layout-manager="GridLayoutManager" row-count="1" column-count="1" same-size-horizontally="false" same-size-vertically="false" hgap="-1" vgap="-1">
-            <margin top="0" left="0" bottom="0" right="0"/>
+            <margin top="0" left="0" bottom="30" right="0"/>
             <constraints>
               <grid row="0" column="2" row-span="1" col-span="1" vsize-policy="3" hsize-policy="3" anchor="0" fill="3" indent="0" use-parent-layout="false"/>
             </constraints>
