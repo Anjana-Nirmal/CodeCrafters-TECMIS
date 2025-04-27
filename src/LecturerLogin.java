@@ -6,7 +6,7 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 
-public class Login extends JFrame {
+public class LecturerLogin extends JFrame {
     private JPanel main;
     private JTextField textField1;
     private JPasswordField passwordField1;
@@ -14,7 +14,7 @@ public class Login extends JFrame {
     private JButton logInButton;
     static String Username;
     String Password;
-    Login()
+    LecturerLogin()
     {
         DatabaseConnection databaseConnection=new DatabaseConnection();
         setTitle("Login");
@@ -67,7 +67,7 @@ public class Login extends JFrame {
     }
 
     public static void main(String[] args) {
-        new Login();
+        new LecturerLogin();
     }
 }
 
