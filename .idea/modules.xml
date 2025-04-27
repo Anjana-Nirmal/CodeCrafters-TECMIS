@@ -2,7 +2,7 @@
 <project version="4">
   <component name="ProjectModuleManager">
     <modules>
-      <module fileurl="file://$PROJECT_DIR$/.idea/CodeCrafters-TECMIS.iml" filepath="$PROJECT_DIR$/.idea/CodeCrafters-TECMIS.iml" />
+      <module fileurl="file://$PROJECT_DIR$/CodeCrafters-TECMIS.iml" filepath="$PROJECT_DIR$/CodeCrafters-TECMIS.iml" />
     </modules>
   </component>
 </project>
